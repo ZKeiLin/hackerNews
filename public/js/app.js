@@ -2,7 +2,6 @@ const dataMes = document.querySelector('#data');
 
 function fetchData() {
   dataMes.textContent = 'Loading...';
-  dataMes.textContent = '';
   fetch(`/hacker`)
     .then((response) => {
       response.json().then((data) => {
@@ -21,6 +20,7 @@ function fetchData() {
             ul.appendChild(li);                 
           }
         }
+        dataMes.textContent = '';
         document.getElementById("data").appendChild(ul); 
       });
     });
