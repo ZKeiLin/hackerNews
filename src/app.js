@@ -30,12 +30,13 @@ app.get('/hacker', (req, res) => {
       return res.send({ error });
     }
     var data = [];
-    getStories(topStoriesData, 5, (storiesError, storiesData) => {
+    const count = 10;
+    getStories(topStoriesData, count, (storiesError, storiesData) => {
       if (storiesError) {
         return res.send({storiesError});
       }
       data.push(storiesData);
-      if (data.length === 5) {
+      if (data.length === count) {
         res.send(data);
       }
     })
