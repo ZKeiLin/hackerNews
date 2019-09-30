@@ -1,6 +1,10 @@
-const dataMes = document.querySelector('#data');
 
-function fetchData() {
+var content = [];
+fetchData(0);
+
+function fetchData(ori) {
+  const dataMes = document.querySelector('#data');
+  let showCount = 10;
   let spinner = renderSpiner();
   dataMes.appendChild(spinner);
   fetch(`/hacker`)
@@ -11,7 +15,7 @@ function fetchData() {
         } 
         var ul = document.createElement("ul");
         ul.className = "list-group list-group-flush"
-        for (let i in data) {
+        for (let i = ori; i < ori + showCount; i ++) {
           let content = data[i];
           if (content !== null) {
             let li = renderListItem(content);
@@ -23,8 +27,6 @@ function fetchData() {
       });
     });
 }
-
-fetchData();
 
 function renderListItem(content) {
   let li = document.createElement("LI");
@@ -69,15 +71,31 @@ function renderSpiner() {
   return spinner
 }
 
+function renderPaginationItem(i) {
+  const li = document.createElement("LI");
+  li.className = "page-item";
+  const a = document.createElement("A");
+  a.className = "page-link";
+  a.href = "#";
+  a.innerHTML=i
+  li.appendChild(a);
+  return li;
+}
+
 function timeCalulator(timestamp) {
   var date = new Date(timestamp*1000);
   var hours = date.getHours();
-  // // Minutes part from the timestamp
-  // var minutes = "0" + date.getMinutes();
-  // // Seconds part from the timestamp
-  // var seconds = "0" + date.getSeconds();
-
   var formattedTime = hours + " hours ago";
   return formattedTime;
 }
 
+function showData(i) {
+  const dataMes = document.querySelector('#data');
+  dataMes.innerHTML='';
+  fetchData(i*10 - 10);
+}
+
+
+function previous() {
+
+}

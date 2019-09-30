@@ -31,3 +31,7 @@ footer {
 .page-item {
   border: 0;
 }
+
+button:active {
+  color: blue;
+}
